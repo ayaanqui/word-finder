@@ -82,7 +82,6 @@ func main() {
 		invalid_word := false
 		for _, valid_letter := range available_letters {
 			if strings.Contains(word, valid_letter) {
-				valid_words = append(valid_words, word)
 				continue
 			}
 			invalid_word = true
@@ -92,9 +91,10 @@ func main() {
 		if invalid_word {
 			continue
 		}
+		valid_words = append(valid_words, word)
 	}
 
 	for _, w := range valid_words {
-		fmt.Println(w)
+		fmt.Println(strings.ToLower(w))
 	}
 }
