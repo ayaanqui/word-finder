@@ -63,6 +63,8 @@ func main() {
 			continue
 		}
 
+		// check if file_word contains the static letters (if any) 
+		// at the defined position
 		invalid_word := false
 		for _, fixed_letter := range user_words_fixed {
 			if string(file_word[fixed_letter.Index]) == fixed_letter.Value {
@@ -79,16 +81,14 @@ func main() {
 
 	valid_words := []string{}
 	for _, word := range words_in_len {
-		invalid_word := false
+		found_letters := 0
 		for _, valid_letter := range available_letters {
 			if strings.Contains(word, valid_letter) {
-				continue
+				found_letters += 1
 			}
-			invalid_word = true
-			break
 		}
 
-		if invalid_word {
+		if found_letters < len(user_word) {
 			continue
 		}
 		valid_words = append(valid_words, word)
